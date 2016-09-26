@@ -287,7 +287,7 @@
                         Finding Aid - <xsl:apply-templates select="ead:titleproper[@type='filing']"/>
                     </xsl:when>
                     <xsl:otherwise>
-                        <fo:external-graphic src="images/pdf-logo.png"  height="1cm" width="2cm"
+                        <fo:external-graphic src="images/pdf-logo.png"  height="4cm" width="3.5cm"
                             content-width="scale-to-fit" content-height="scale-to-fit"/>
                         <xsl:text> </xsl:text>
                         <xsl:apply-templates select="(//ead:repository/ead:corpname)[1]"/>
@@ -588,9 +588,18 @@
                                         <xsl:apply-templates select="child::*/ead:head"/>
                                     </xsl:when>
                                     <xsl:otherwise>
-                                        <xsl:value-of select="child::*/ead:unitid"/>,
-                                        <xsl:apply-templates select="child::*/ead:unittitle"/>,
-                                        <xsl:apply-templates select="child::*/ead:unitdate" mode="did"/>
+                                        <xsl:if test="child::*/ead:unitid">
+                                            <xsl:value-of select="child::*/ead:unitid"/>,
+                                        </xsl:if>
+                                        <xsl:choose>
+                                            <xsl:when test="child::*/ead:unitdate">
+                                                <xsl:apply-templates select="child::*/ead:unittitle"/>,
+                                                <xsl:apply-templates select="child::*/ead:unitdate" mode="did"/>
+                                            </xsl:when>
+                                            <xsl:otherwise>
+                                                <xsl:apply-templates select="child::*/ead:unittitle"/>
+                                            </xsl:otherwise>
+                                        </xsl:choose>
                                     </xsl:otherwise>
                                 </xsl:choose>
                             </fo:basic-link>
@@ -608,7 +617,9 @@
                                             <xsl:apply-templates select="child::*/ead:head"/>
                                         </xsl:when>
                                         <xsl:otherwise>
-                                            <xsl:value-of select="child::*/ead:unitid"/>,
+                                            <xsl:if test="child::*/ead:unitid">
+                                                <xsl:value-of select="child::*/ead:unitid"/>,
+                                            </xsl:if>
                                             <xsl:apply-templates select="child::*/ead:unittitle"/>
                                         </xsl:otherwise>
                                     </xsl:choose>
@@ -1401,9 +1412,9 @@
                                  border-bottom="1px solid #000" border-top="1pt solid #000"/>
                 <fo:table-column column-number="3" column-width="1.1in"
                                  border-bottom="1px solid #000" border-top="1pt solid #000"/>
-                <fo:table-column column-number="4" column-width="1.3in"
+                <fo:table-column column-number="4" column-width="1.1in"
                                  border-bottom="1px solid #000" border-top="1pt solid #000"/>
-                <fo:table-column column-number="5" column-width="1in"
+                <fo:table-column column-number="5" column-width="1.2in"
                                  border-bottom="1px solid #000" border-top="1pt solid #000"/>
                 <fo:table-body start-indent="0in">
                     <xsl:if test="child::*[@level][1][@level='item' or @level='file' or @level='otherlevel']">
@@ -1507,7 +1518,7 @@
                         <fo:block><xsl:value-of select="(ead:accessrestrict/p | ead:accessrestrict)"/></fo:block>
                     </fo:table-cell>
                     <fo:table-cell>
-                        <fo:block><xsl:value-of select="ead:did/ead:container"/></fo:block>
+                        <fo:block><xsl:value-of select="ead:did/ead:physdesc"/></fo:block>
                     </fo:table-cell>
                 </fo:table-row>
             </xsl:otherwise>
@@ -1541,7 +1552,7 @@
             </fo:table-cell>
             <fo:table-cell number-columns-spanned="1">
                 <fo:block>
-                    Container
+                    Extent &amp; Medium
                 </fo:block>
             </fo:table-cell>
         </fo:table-row>
