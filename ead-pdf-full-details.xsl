@@ -328,7 +328,9 @@
     </xsl:template>
 
     <xsl:template match="ead:profiledesc/child::*">
-        <fo:block><xsl:apply-templates/></fo:block>
+        <xsl:if test="not(ead:language)">
+            <fo:block><xsl:apply-templates/></fo:block>
+        </xsl:if>
     </xsl:template>
 
 
