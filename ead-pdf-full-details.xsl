@@ -581,6 +581,7 @@
                     </xsl:if>
                     <!--Creates descendants hierarchy-->
                     <xsl:for-each select="//ead:c">
+                        <xsl:if test="@level='series' or @level='subseries'">
                         <xsl:variable name="indention" select="(count(ancestor-or-self::*) - 3) * 8"/>
                         <fo:block text-align-last="justify" margin-left="{$indention}pt">
                             <fo:basic-link internal-destination="{local:buildID(.)}">
@@ -605,6 +606,7 @@
                             <xsl:text>&#160;&#160;</xsl:text>
                             <fo:page-number-citation ref-id="{local:buildID(.)}"/>
                         </fo:block>
+                        </xsl:if>
                     </xsl:for-each>
                 </xsl:for-each>
             </fo:block>
