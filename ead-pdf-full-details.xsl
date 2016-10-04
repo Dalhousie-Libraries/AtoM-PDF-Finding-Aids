@@ -333,10 +333,12 @@
         </xsl:if>
     </xsl:template>
 
+    <xsl:template match="ead:profiledesc/ead:descrules"></xsl:template>
 
     <xsl:template match="ead:profiledesc/ead:language">
         <xsl:value-of select="."/>
     </xsl:template>
+    
     <xsl:template match="ead:profiledesc/ead:creation/ead:date">
         <!--
             Uses local function to format date into Month, day year.
