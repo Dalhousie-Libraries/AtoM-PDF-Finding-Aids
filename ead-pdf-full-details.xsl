@@ -438,8 +438,9 @@
                 </xsl:if>
                 <!--Creates descendants bookmarks-->
                 <!-- if not an item -->
-                <xsl:if test="not(//ead:c[@level = 'item'])">
+                
                     <xsl:for-each select="//ead:c">
+                        <xsl:if test="not(@level = 'item')">
                         <fo:bookmark internal-destination="{local:buildID(.)}">
                             <fo:bookmark-title>
                                 <xsl:choose>
@@ -452,8 +453,9 @@
                                 </xsl:choose>
                             </fo:bookmark-title>
                         </fo:bookmark>
+                        </xsl:if>
                     </xsl:for-each>
-                </xsl:if>
+                
             </xsl:for-each>                
         </fo:bookmark-tree>
     </xsl:template>
