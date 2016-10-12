@@ -437,21 +437,24 @@
                     </fo:bookmark>
                 </xsl:if>
                 <!--Creates descendants bookmarks-->
-                <xsl:for-each select="//ead:c">
-                    <fo:bookmark internal-destination="{local:buildID(.)}">
-                        <fo:bookmark-title>
-                            <xsl:choose>
-                                <xsl:when test="ead:head">
-                                    <xsl:apply-templates select="child::*/ead:head"/>
-                                </xsl:when>
-                                <xsl:otherwise>
-                                    <xsl:apply-templates select="child::*/ead:unittitle"/>
-                                </xsl:otherwise>
-                            </xsl:choose>
-                        </fo:bookmark-title>
-                    </fo:bookmark>
-                </xsl:for-each>
-            </xsl:for-each>
+                <!-- if not an item -->
+                <xsl:if test="not(//ead:c[@level = 'item'])">
+                    <xsl:for-each select="//ead:c">
+                        <fo:bookmark internal-destination="{local:buildID(.)}">
+                            <fo:bookmark-title>
+                                <xsl:choose>
+                                    <xsl:when test="ead:head">
+                                        <xsl:apply-templates select="child::*/ead:head"/>
+                                    </xsl:when>
+                                    <xsl:otherwise>
+                                        <xsl:apply-templates select="child::*/ead:unittitle"/>
+                                    </xsl:otherwise>
+                                </xsl:choose>
+                            </fo:bookmark-title>
+                        </fo:bookmark>
+                    </xsl:for-each>
+                </xsl:if>
+            </xsl:for-each>                
         </fo:bookmark-tree>
     </xsl:template>
 
