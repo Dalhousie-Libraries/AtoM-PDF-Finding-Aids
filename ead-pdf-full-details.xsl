@@ -1480,37 +1480,39 @@
 
     <!-- Series child elements -->
     <xsl:template match="ead:did" mode="dscSeries">
-        <fo:block margin-left="2pt" margin-bottom="4pt" font-size="9">
-            <!--Atom: <xsl:apply-templates select="ead:repository" mode="dsc"/> -->
-            <xsl:apply-templates select="ead:origination" mode="dsc"/>
-            <xsl:apply-templates select="ead:unittitle[not(ead:bibseries)]" mode="dsc"/>
-            <xsl:apply-templates select="ead:unitid" mode="dsc"/>
-            <xsl:apply-templates select="ead:unitdate" mode="dsc"/>
-            <xsl:apply-templates select="following-sibling::ead:scopecontent[1]" mode="dsc"/>
-            <xsl:apply-templates select="ead:physdesc" mode="dsc"/>
-            <xsl:apply-templates select="ead:physloc" mode="dsc"/>
-            <xsl:apply-templates select="ead:langmaterial" mode="dsc"/>
-            <xsl:apply-templates select="ead:materialspec" mode="dsc"/>
-            <xsl:apply-templates select="ead:abstract" mode="dsc"/>
-            <xsl:apply-templates select="ead:note" mode="dsc"/>
-        </fo:block>
-
-        <fo:block margin-left="2pt" margin-bottom="4pt" margin-top="0" font-size="9">
-            <!-- Try to handle EAD tags in RAD order... -->
-            <xsl:call-template name="titleNotes"/>
-            <xsl:apply-templates select="following-sibling::ead:phystech" mode="dsc"/>
-            <xsl:apply-templates select="following-sibling::ead:acqinfo" mode="dsc"/>
-            <xsl:apply-templates select="following-sibling::ead:arrangement" mode="dsc"/>
-            <xsl:apply-templates select="following-sibling::ead:originalsloc" mode="dsc"/>
-            <xsl:apply-templates select="following-sibling::ead:altformavail" mode="dsc"/>
-            <xsl:apply-templates select="following-sibling::ead:accessrestrict" mode="dsc"/>
-            <xsl:apply-templates select="following-sibling::ead:userestrict" mode="dsc"/>
-            <xsl:apply-templates select="following-sibling::ead:otherfindaid" mode="dsc"/>
-            <xsl:apply-templates select="following-sibling::ead:relatedmaterial" mode="dsc"/>
-            <xsl:apply-templates select="following-sibling::ead:accruals" mode="dsc"/>
-            <xsl:call-template name="otherNotesSeries"/>
-            <xsl:apply-templates select="following-sibling::ead:controlaccess" mode="dsc"/>
-        </fo:block>
+        <xsl:if test="not(../@level = 'item')">
+            <fo:block margin-left="2pt" margin-bottom="4pt" font-size="9">
+                <!--Atom: <xsl:apply-templates select="ead:repository" mode="dsc"/> -->
+                <xsl:apply-templates select="ead:origination" mode="dsc"/>
+                <xsl:apply-templates select="ead:unittitle[not(ead:bibseries)]" mode="dsc"/>
+                <xsl:apply-templates select="ead:unitid" mode="dsc"/>
+                <xsl:apply-templates select="ead:unitdate" mode="dsc"/>
+                <xsl:apply-templates select="following-sibling::ead:scopecontent[1]" mode="dsc"/>
+                <xsl:apply-templates select="ead:physdesc" mode="dsc"/>
+                <xsl:apply-templates select="ead:physloc" mode="dsc"/>
+                <xsl:apply-templates select="ead:langmaterial" mode="dsc"/>
+                <xsl:apply-templates select="ead:materialspec" mode="dsc"/>
+                <xsl:apply-templates select="ead:abstract" mode="dsc"/>
+                <xsl:apply-templates select="ead:note" mode="dsc"/>
+            </fo:block>
+    
+            <fo:block margin-left="2pt" margin-bottom="4pt" margin-top="0" font-size="9">
+                <!-- Try to handle EAD tags in RAD order... -->
+                <xsl:call-template name="titleNotes"/>
+                <xsl:apply-templates select="following-sibling::ead:phystech" mode="dsc"/>
+                <xsl:apply-templates select="following-sibling::ead:acqinfo" mode="dsc"/>
+                <xsl:apply-templates select="following-sibling::ead:arrangement" mode="dsc"/>
+                <xsl:apply-templates select="following-sibling::ead:originalsloc" mode="dsc"/>
+                <xsl:apply-templates select="following-sibling::ead:altformavail" mode="dsc"/>
+                <xsl:apply-templates select="following-sibling::ead:accessrestrict" mode="dsc"/>
+                <xsl:apply-templates select="following-sibling::ead:userestrict" mode="dsc"/>
+                <xsl:apply-templates select="following-sibling::ead:otherfindaid" mode="dsc"/>
+                <xsl:apply-templates select="following-sibling::ead:relatedmaterial" mode="dsc"/>
+                <xsl:apply-templates select="following-sibling::ead:accruals" mode="dsc"/>
+                <xsl:call-template name="otherNotesSeries"/>
+                <xsl:apply-templates select="following-sibling::ead:controlaccess" mode="dsc"/>
+            </fo:block>
+        </xsl:if>
     </xsl:template>
 
     <!-- Single row unittitles and all other clevel elements -->
@@ -1560,36 +1562,33 @@
         | ead:altformavail | ead:accessrestrict | ead:userestrict | ead:otherfindaid | ead:relatedmaterial
         | ead:accruals | ead:odd" mode="dsc">
 
-        <xsl:if test="not(../../@level = 'item')">
-
-            <fo:block xsl:use-attribute-sets="smpDsc">
-                <fo:inline text-decoration="underline">
-                <xsl:choose>
-                    <!-- Test for label attribute used by origination element -->
-                    <xsl:when test="@label">
-                        <xsl:value-of select="concat(upper-case(substring(@label,1,1)),substring(@label,2))"></xsl:value-of>
-                        <xsl:if test="@type"> [<xsl:value-of select="@type"/>]</xsl:if>
-                        <xsl:if test="self::ead:origination">
-                            <xsl:choose>
-                                <xsl:when test="ead:persname[@role != ''] and contains(ead:persname/@role,' (')">
-                                    - <xsl:value-of select="substring-before(ead:persname/@role,' (')"/>
-                                </xsl:when>
-                                <xsl:when test="ead:persname[@role != '']">
-                                    - <xsl:value-of select="ead:persname/@role"/>
-                                </xsl:when>
-                                <xsl:otherwise/>
-                            </xsl:choose>
-                        </xsl:if>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:value-of select="local:tagName(.)"/>
-                        <xsl:if test="@type"> [<xsl:value-of select="@type"/>]</xsl:if>
-                    </xsl:otherwise>
-                </xsl:choose></fo:inline>: <xsl:apply-templates/>
-                <xsl:if test="@datechar"> (<xsl:value-of select="@datechar"/>)</xsl:if>
-                <xsl:if test="name()='unitdate'"> (date of creation)</xsl:if>
-            </fo:block>
-        </xsl:if>
+        <fo:block xsl:use-attribute-sets="smpDsc">
+            <fo:inline text-decoration="underline">
+            <xsl:choose>
+                <!-- Test for label attribute used by origination element -->
+                <xsl:when test="@label">
+                    <xsl:value-of select="concat(upper-case(substring(@label,1,1)),substring(@label,2))"></xsl:value-of>
+                    <xsl:if test="@type"> [<xsl:value-of select="@type"/>]</xsl:if>
+                    <xsl:if test="self::ead:origination">
+                        <xsl:choose>
+                            <xsl:when test="ead:persname[@role != ''] and contains(ead:persname/@role,' (')">
+                                - <xsl:value-of select="substring-before(ead:persname/@role,' (')"/>
+                            </xsl:when>
+                            <xsl:when test="ead:persname[@role != '']">
+                                - <xsl:value-of select="ead:persname/@role"/>
+                            </xsl:when>
+                            <xsl:otherwise/>
+                        </xsl:choose>
+                    </xsl:if>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="local:tagName(.)"/>
+                    <xsl:if test="@type"> [<xsl:value-of select="@type"/>]</xsl:if>
+                </xsl:otherwise>
+            </xsl:choose></fo:inline>: <xsl:apply-templates/>
+            <xsl:if test="@datechar"> (<xsl:value-of select="@datechar"/>)</xsl:if>
+            <xsl:if test="name()='unitdate'"> (date of creation)</xsl:if>
+        </fo:block>
     </xsl:template>
     
     <!--
