@@ -328,6 +328,7 @@
         </xsl:if>
     </xsl:template>
 
+    <xsl:template match="ead:profiledesc/ead:descrules"></xsl:template>
 
     <xsl:template match="ead:profiledesc/ead:language">
         <xsl:value-of select="."/>
