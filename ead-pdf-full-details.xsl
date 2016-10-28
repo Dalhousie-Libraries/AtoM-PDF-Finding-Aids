@@ -292,7 +292,7 @@
                         Finding Aid - <xsl:apply-templates select="ead:titleproper[@type='filing']"/>
                     </xsl:when>
                     <xsl:otherwise>
-                        <fo:external-graphic src="images/pdf-logo.png"  height="1cm" width="2cm"
+                        <fo:external-graphic src="images/pdf-logo.png"  height="4cm" width="3.5cm"
                             content-width="scale-to-fit" content-height="scale-to-fit"/>
                         <xsl:text> </xsl:text>
                         <xsl:apply-templates select="(//ead:repository/ead:corpname)[1]"/>
