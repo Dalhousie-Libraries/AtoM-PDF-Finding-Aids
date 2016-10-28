@@ -1446,49 +1446,36 @@
 
     <!-- Series titles -->
     <xsl:template match="ead:did" mode="dscSeriesTitle">
-        <xsl:choose>
-            <xsl:when test="../@level='item'">
-                <fo:block xsl:use-attribute-sets="smpDsc">
-                    <xsl:value-of select="ead:unittitle"/> [<xsl:value-of select="../ead:controlaccess/ead:genreform"/>]. - <xsl:value-of select="ead:unitdate"/>. - <xsl:value-of select="ead:physdesc"/>.
-                </fo:block>
-                <fo:block xsl:use-attribute-sets="smpDsc">
-                    <fo:inline text-decoration="underline">Scope and Content:</fo:inline> <fo:inline> </fo:inline>
-                    <xsl:value-of select="../ead:scopecontent"/>
-                </fo:block>
-            </xsl:when>
-            
-            <xsl:otherwise>
-                <fo:block font-weight="bold" font-size="14" margin-bottom="5pt" margin-top="20pt" id="{local:buildID(parent::*)}">
-                    <xsl:choose>
-                        <xsl:when test="../@level='series'">Series: </xsl:when>
-                        <xsl:when test="../@level='subseries'">Subseries: </xsl:when>
-                        <xsl:when test="../@level='subsubseries'">Sub-Subseries: </xsl:when>
-                        <xsl:when test="../@level='collection'">Collection: </xsl:when>
-                        <xsl:when test="../@level='subcollection'">Subcollection: </xsl:when>
-                        <xsl:when test="../@level='fonds'">Fonds: </xsl:when>
-                        <xsl:when test="../@level='subfonds'">Subfonds: </xsl:when>
-                        <xsl:when test="../@level='recordgrp'">Record group: </xsl:when>
-                        <xsl:when test="../@level='subgrp'">Subgroup: </xsl:when>
-                        <xsl:when test="../@level='file'">File: </xsl:when>
-                        <xsl:otherwise>
-                            <xsl:if test="../@otherlevel">
-                                <xsl:call-template name="ucfirst">
-                                    <xsl:with-param name="value" select="../@otherlevel"/>
-                                </xsl:call-template>
-                                <xsl:text>: </xsl:text>
-                            </xsl:if>
-                        </xsl:otherwise>
-                    </xsl:choose>
-                    <xsl:if test="ead:unitid">
-                        <xsl:value-of select="(ead:unitid)[1]"/>
-                        <xsl:text> - </xsl:text>
+        <fo:block font-weight="bold" font-size="14" margin-bottom="5pt" margin-top="20pt" id="{local:buildID(parent::*)}">
+            <xsl:choose>
+                <xsl:when test="../@level='series'">Series: </xsl:when>
+                <xsl:when test="../@level='subseries'">Subseries: </xsl:when>
+                <xsl:when test="../@level='subsubseries'">Sub-Subseries: </xsl:when>
+                <xsl:when test="../@level='collection'">Collection: </xsl:when>
+                <xsl:when test="../@level='subcollection'">Subcollection: </xsl:when>
+                <xsl:when test="../@level='fonds'">Fonds: </xsl:when>
+                <xsl:when test="../@level='subfonds'">Subfonds: </xsl:when>
+                <xsl:when test="../@level='recordgrp'">Record group: </xsl:when>
+                <xsl:when test="../@level='subgrp'">Subgroup: </xsl:when>
+                <xsl:when test="../@level='file'">File: </xsl:when>
+                <xsl:when test="../@level='item'">Item: </xsl:when>
+                <xsl:otherwise>
+                    <xsl:if test="../@otherlevel">
+                        <xsl:call-template name="ucfirst">
+                            <xsl:with-param name="value" select="../@otherlevel"/>
+                        </xsl:call-template>
+                        <xsl:text>: </xsl:text>
                     </xsl:if>
-                    <xsl:apply-templates select="(ead:unittitle[not(ead:bibseries)])[1]"/>
-                    <!--<xsl:if test="(string-length(ead:unittitle[1]) &gt; 1) and (string-length(ead:unitdate[1]) &gt; 1)"></xsl:if>
-                    <xsl:apply-templates select="ead:unitdate" mode="did"/>-->
-                </fo:block>
-            </xsl:otherwise>
-        </xsl:choose>
+                </xsl:otherwise>
+            </xsl:choose>
+            <xsl:if test="ead:unitid">
+                <xsl:value-of select="(ead:unitid)[1]"/>
+                <xsl:text> - </xsl:text>
+            </xsl:if>
+            <xsl:apply-templates select="(ead:unittitle[not(ead:bibseries)])[1]"/>
+            <!--<xsl:if test="(string-length(ead:unittitle[1]) &gt; 1) and (string-length(ead:unitdate[1]) &gt; 1)"></xsl:if>
+            <xsl:apply-templates select="ead:unitdate" mode="did"/>-->
+        </fo:block>
     </xsl:template>
 
     <!-- Series child elements -->
