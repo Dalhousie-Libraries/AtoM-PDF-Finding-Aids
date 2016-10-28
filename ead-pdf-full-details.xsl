@@ -1603,7 +1603,6 @@
             <xsl:if test="name()='unitdate'"> (date of creation)</xsl:if>
         </fo:block>
     </xsl:template>
-    
     <!--
     <xsl:template match="ead:relatedmaterial | ead:separatedmaterial | ead:accessrestrict | ead:userestrict |
         ead:custodhist | ead:accruals | ead:altformavail | ead:acqinfo |
