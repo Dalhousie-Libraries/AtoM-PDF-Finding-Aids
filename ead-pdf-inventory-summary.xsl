@@ -1574,9 +1574,9 @@
 
     <!-- Series titles -->
     <xsl:template match="ead:did" mode="dscSeriesTitle">
-        <fo:block font-weight="bold" font-size="14" margin-bottom="0" margin-top="0" id="{local:buildID(parent::*)}">
+        <fo:block font-weight="bold" font-size="20" margin-bottom="0" margin-top="0" id="{local:buildID(parent::*)}">
             <!-- Uncomment the following to add 'Series' to series titles  -->
-            <xsl:if test="ead:unitid">
+            
                 <xsl:choose>
                     <xsl:when test="../@level='series'">Series <xsl:value-of select="ead:unitid"/>: </xsl:when>
                     <xsl:when test="../@level='subseries'">Subseries <xsl:value-of select="ead:unitid"/>: </xsl:when>
@@ -1597,7 +1597,7 @@
                         </xsl:if>
                         <xsl:value-of select="ead:unitid"/>: </xsl:otherwise>
                 </xsl:choose>
-            </xsl:if>
+            
             <xsl:apply-templates select="ead:unittitle"/>
             <!--<xsl:if test="(string-length(ead:unittitle[1]) &gt; 1) and (string-length(ead:unitdate[1]) &gt; 1)"></xsl:if>
             <xsl:apply-templates select="ead:unitdate" mode="did"/>-->
