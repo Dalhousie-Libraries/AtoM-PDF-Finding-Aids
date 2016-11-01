@@ -1523,7 +1523,7 @@
                         <fo:block><xsl:value-of select="ead:did/ead:unitdate"/></fo:block>
                     </fo:table-cell>
                     <fo:table-cell>
-                        <fo:block><xsl:value-of select="(ead:accessrestrict/p | ead:accessrestrict)"/></fo:block>
+                        <fo:block><xsl:value-of select="ead:did/ead:physdesc"/></fo:block>
                     </fo:table-cell>
                     <fo:table-cell>
                         <fo:block><xsl:value-of select="ead:did/ead:physdesc"/></fo:block>
@@ -1555,7 +1555,7 @@
             </fo:table-cell>
             <fo:table-cell number-columns-spanned="1">
                 <fo:block>
-                    Access status
+                    Physical Description
                 </fo:block>
             </fo:table-cell>
             <fo:table-cell number-columns-spanned="1">
