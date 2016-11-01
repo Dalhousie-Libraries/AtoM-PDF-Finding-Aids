@@ -1445,11 +1445,11 @@
         <xsl:call-template name="clevel">
             <xsl:with-param name="level" select="$findClevel"></xsl:with-param>
         </xsl:call-template>
-        <xsl:if test="@level='series'">
+      <!--  <xsl:if test="@level='series'">
             <fo:table-row>
                 <fo:table-cell number-columns-spanned="5"><xsl:call-template name="toc"/></fo:table-cell>
             </fo:table-row>
-        </xsl:if>
+        </xsl:if>-->
     </xsl:template>
     <!--This is a named template that processes all the components  -->
     <xsl:template name="clevel">
