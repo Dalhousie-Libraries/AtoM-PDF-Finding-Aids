@@ -1526,7 +1526,7 @@
                         <fo:block><xsl:value-of select="ead:did/ead:physdesc"/></fo:block>
                     </fo:table-cell>
                     <fo:table-cell>
-                        <fo:block><xsl:value-of select="ead:did/ead:physdesc"/></fo:block>
+                        <fo:block><xsl:value-of select="ead:scopecontent"/></fo:block>
                     </fo:table-cell>
                 </fo:table-row>
             </xsl:otherwise>
@@ -1560,7 +1560,7 @@
             </fo:table-cell>
             <fo:table-cell number-columns-spanned="1">
                 <fo:block>
-                    Extent &amp; Medium
+                    Scope &amp; Content Note
                 </fo:block>
             </fo:table-cell>
         </fo:table-row>
