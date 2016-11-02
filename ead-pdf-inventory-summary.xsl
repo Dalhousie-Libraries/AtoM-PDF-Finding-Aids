@@ -1649,7 +1649,6 @@
         </fo:block>
         <fo:block margin-bottom="0pt" margin-top="0" font-size="12">
             <xsl:apply-templates select="ead:origination" mode="dsc"/>
-            <xsl:apply-templates select="ead:physloc" mode="dsc"/>
             <xsl:apply-templates select="ead:materialspec" mode="dsc"/>
             <xsl:apply-templates select="ead:abstract" mode="dsc"/>
             <xsl:apply-templates select="ead:note" mode="dsc"/>
