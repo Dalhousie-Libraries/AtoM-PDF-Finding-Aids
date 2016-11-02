@@ -1678,7 +1678,7 @@
 
     <!-- Special formatting for elements in the collection inventory list -->
     <xsl:template match="ead:repository | ead:origination | ead:unitdate | ead:unitid | ead:scopecontent
-        | ead:physdesc | ead:materialspec | ead:container
+        | ead:physdesc | ead:physloc | ead:materialspec | ead:container
         | ead:abstract | ead:note | ead:phystech | ead:acqinfo | ead:arrangement | ead:originalsloc
         | ead:altformavail | ead:accessrestrict | ead:userestrict | ead:otherfindaid | ead:relatedmaterial
         | ead:accruals | ead:odd" mode="dsc">
