@@ -424,7 +424,7 @@
             <xsl:for-each select="ead:dsc">
                 <xsl:if test="child::*">
                     <fo:bookmark internal-destination="{local:buildID(.)}">
-                        <fo:bookmark-title>Collection holdings</fo:bookmark-title>
+                        <fo:bookmark-title>Series descriptions</fo:bookmark-title>
                     </fo:bookmark>
                 </xsl:if>
                 <!--Creates descendants bookmarks-->
@@ -551,7 +551,7 @@
                 <xsl:for-each select="ead:dsc">
                     <xsl:if test="child::*">
                         <fo:block text-align-last="justify">
-                            <fo:basic-link internal-destination="{local:buildID(.)}">Collection holdings</fo:basic-link>
+                            <fo:basic-link internal-destination="{local:buildID(.)}">Series descriptions</fo:basic-link>
                             <xsl:text>&#160;&#160;</xsl:text>
                             <fo:leader leader-pattern="dots"/>
                             <xsl:text>&#160;&#160;</xsl:text>
@@ -1347,7 +1347,7 @@
     <!-- Collection Inventory (dsc) templates -->
     <xsl:template match="ead:archdesc/ead:dsc">
         <fo:block xsl:use-attribute-sets="sectionTable" margin-top="10pt">
-            <fo:block xsl:use-attribute-sets="h2ID">Collection holdings</fo:block>
+            <fo:block xsl:use-attribute-sets="h2ID">Series descriptions</fo:block>
             <xsl:apply-templates select="*[not(self::ead:head)]"/>
         </fo:block>
     </xsl:template>
