@@ -376,11 +376,6 @@
                     <fo:bookmark-title><xsl:value-of select="local:tagName(ead:scopecontent[1])"/></fo:bookmark-title>
                 </fo:bookmark>
             </xsl:if>
-            <xsl:if test="ead:arrangement">
-                <fo:bookmark internal-destination="{local:buildID(ead:arrangement[1])}">
-                    <fo:bookmark-title><xsl:value-of select="local:tagName(ead:arrangement[1])"/></fo:bookmark-title>
-                </fo:bookmark>
-            </xsl:if>
             <xsl:if test="ead:fileplan">
                 <fo:bookmark internal-destination="{local:buildID(ead:fileplan[1])}">
                     <fo:bookmark-title><xsl:value-of select="local:tagName(ead:fileplan[1])"/></fo:bookmark-title>
@@ -407,11 +402,7 @@
                     <fo:bookmark-title><xsl:value-of select="local:tagName(ead:phystech[1])"/></fo:bookmark-title>
                 </fo:bookmark>
             </xsl:if>
-            <xsl:if test="ead:odd">
-                <fo:bookmark internal-destination="{local:buildID(ead:odd[1])}">
-                    <fo:bookmark-title><xsl:value-of select="local:tagName(ead:odd[1])"/></fo:bookmark-title>
-                </fo:bookmark>
-            </xsl:if>
+
             <xsl:if test="ead:bibliography">
                 <fo:bookmark internal-destination="{local:buildID(ead:bibliography[1])}">
                     <fo:bookmark-title><xsl:value-of select="local:tagName(ead:bibliography[1])"/></fo:bookmark-title>
@@ -496,15 +487,6 @@
                         <fo:page-number-citation ref-id="{local:buildID(ead:scopecontent[1])}"/>
                     </fo:block>
                 </xsl:if>
-                <xsl:if test="ead:arrangement">
-                    <fo:block text-align-last="justify">
-                        <fo:basic-link internal-destination="{local:buildID(ead:arrangement[1])}"><xsl:value-of select="local:tagName(ead:arrangement[1])"/></fo:basic-link>
-                        <xsl:text>&#160;&#160;</xsl:text>
-                        <fo:leader leader-pattern="dots"/>
-                        <xsl:text>&#160;&#160;</xsl:text>
-                        <fo:page-number-citation ref-id="{local:buildID(ead:arrangement[1])}"/>
-                    </fo:block>
-                </xsl:if>
                 <xsl:if test="ead:fileplan">
                     <fo:block text-align-last="justify">
                         <fo:basic-link internal-destination="{local:buildID(ead:fileplan[1])}"><xsl:value-of select="local:tagName(ead:fileplan[1])"/></fo:basic-link>
@@ -546,15 +528,6 @@
                         <fo:leader leader-pattern="dots"/>
                         <xsl:text>&#160;&#160;</xsl:text>
                         <fo:page-number-citation ref-id="{local:buildID(ead:phystech[1])}"/>
-                    </fo:block>
-                </xsl:if>
-                <xsl:if test="ead:odd and not(ead:odd[@type='publicationStatus'])">
-                    <fo:block text-align-last="justify">
-                        <fo:basic-link internal-destination="{local:buildID(ead:odd[1])}"><xsl:value-of select="local:tagName(ead:odd[1])"/></fo:basic-link>
-                        <xsl:text>&#160;&#160;</xsl:text>
-                        <fo:leader leader-pattern="dots"/>
-                        <xsl:text>&#160;&#160;</xsl:text>
-                        <fo:page-number-citation ref-id="{local:buildID(ead:odd[1])}"/>
                     </fo:block>
                 </xsl:if>
                 <xsl:if test="ead:bibliography">
