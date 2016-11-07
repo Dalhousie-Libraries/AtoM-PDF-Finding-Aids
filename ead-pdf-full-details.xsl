@@ -428,10 +428,10 @@
                     </fo:bookmark>
                 </xsl:if>
                 <!--Creates descendants bookmarks-->
-                <!-- if not an item -->
+                <!-- if not an item and not a file-->
                 
                     <xsl:for-each select="//ead:c">
-                        <xsl:if test="not(@level = 'item')">
+                        <xsl:if test="not(@level = 'item') and not(@level = 'file')">
                         <fo:bookmark internal-destination="{local:buildID(.)}">
                             <fo:bookmark-title>
                                 <xsl:choose>
