@@ -1385,17 +1385,15 @@
                 border-after-width.length="1pt" border-after-width.conditionality="retain"
                 border-before-width.length="1pt" border-before-width.conditionality="retain">
 
-                <fo:table-column column-number="1" column-width="1.5in"
+                <fo:table-column column-number="1" column-width="1in"
                                  border-bottom="1px solid #000" border-top="1pt solid #000"
                                  border-left="1pt solid #000" border-right="1pt solid #000"/>
 
-                <fo:table-column column-number="2" column-width="2.5in"
+                <fo:table-column column-number="2" column-width="3in"
                                  border-bottom="1px solid #000" border-top="1pt solid #000"/>
-                <fo:table-column column-number="3" column-width="1.1in"
+                <fo:table-column column-number="3" column-width="1.3in"
                                  border-bottom="1px solid #000" border-top="1pt solid #000"/>
-                <fo:table-column column-number="4" column-width="1.1in"
-                                 border-bottom="1px solid #000" border-top="1pt solid #000"/>
-                <fo:table-column column-number="5" column-width="1.2in"
+                <fo:table-column column-number="4" column-width="2.1in"
                                  border-bottom="1px solid #000" border-top="1pt solid #000"/>
                 <fo:table-body start-indent="0in">
                     <xsl:if test="child::*[@level][1][@level='item' or @level='file' or @level='otherlevel']">
@@ -1457,7 +1455,7 @@
                               border-top="1pt solid #000"  text-align="left">
 
                     <fo:table-cell margin-left="{$clevelMargin}" padding-top="4pt">
-                        <xsl:attribute name="number-columns-spanned">5</xsl:attribute>
+                        <xsl:attribute name="number-columns-spanned">4</xsl:attribute>
 
                         <xsl:apply-templates select="ead:did" mode="dscSeriesTitle"/>
                         <xsl:apply-templates select="ead:did" mode="dscSeries"/>
@@ -1466,7 +1464,7 @@
                     </fo:table-cell>
                 </fo:table-row>
                 <fo:table-row border-top="1px solid #000" border-bottom="1pt solid #000" margin-top="3pt">
-                    <fo:table-cell margin-left="{$clevelMargin}" padding-top="4pt" number-columns-spanned="5">
+                    <fo:table-cell margin-left="{$clevelMargin}" padding-top="4pt" number-columns-spanned="4">
                         <fo:block text-align="center" xsl:use-attribute-sets="h4">
                             File / item list
                         </fo:block>
@@ -1498,10 +1496,6 @@
                     <fo:table-cell>
                         <fo:block><xsl:value-of select="ead:did/ead:physdesc"/></fo:block>
                     </fo:table-cell>
-                    <fo:table-cell>
-                        <fo:block><xsl:text>What should go here?</xsl:text></fo:block>
-        <!--                <fo:block><xsl:value-of select="ead:scopecontent"/></fo:block>-->
-                    </fo:table-cell>
                 </fo:table-row>
                 <fo:table-row border-top="0px" padding-left="2pt" margin-left="2pt">
                     <fo:table-cell>
@@ -1512,7 +1506,7 @@
                             <xsl:text> </xsl:text>
                         </fo:block>
                     </fo:table-cell>                    
-                    <fo:table-cell number-columns-spanned="4">
+                    <fo:table-cell number-columns-spanned="3">
                         <fo:block><xsl:apply-templates select="ead:did" mode="dsc2"/></fo:block>
                     </fo:table-cell>
                 </fo:table-row>                
@@ -1545,11 +1539,7 @@
                     Physical description
                 </fo:block>
             </fo:table-cell>
-            <fo:table-cell number-columns-spanned="1">
-                <fo:block>
-                    Scope &amp; content
-                </fo:block>
-            </fo:table-cell>
+
         </fo:table-row>
     </xsl:template>
     <!-- Formats did containers -->
