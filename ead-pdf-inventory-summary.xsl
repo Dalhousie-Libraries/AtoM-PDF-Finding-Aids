@@ -1385,11 +1385,11 @@
                 border-after-width.length="1pt" border-after-width.conditionality="retain"
                 border-before-width.length="1pt" border-before-width.conditionality="retain">
 
-                <fo:table-column column-number="1" column-width="1in"
+                <fo:table-column column-number="1" column-width="1.25in"
                                  border-bottom="1px solid #000" border-top="1pt solid #000"
                                  border-left="1pt solid #000" border-right="1pt solid #000"/>
 
-                <fo:table-column column-number="2" column-width="3in"
+                <fo:table-column column-number="2" column-width="2.75in"
                                  border-bottom="1px solid #000" border-top="1pt solid #000"/>
                 <fo:table-column column-number="3" column-width="1.3in"
                                  border-bottom="1px solid #000" border-top="1pt solid #000"/>
