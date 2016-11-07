@@ -1526,9 +1526,23 @@
                         <fo:block><xsl:value-of select="ead:did/ead:physdesc"/></fo:block>
                     </fo:table-cell>
                     <fo:table-cell>
-                        <fo:block><xsl:value-of select="ead:scopecontent"/></fo:block>
+                        <fo:block><xsl:text>What should go here?</xsl:text></fo:block>
+        <!--                <fo:block><xsl:value-of select="ead:scopecontent"/></fo:block>-->
                     </fo:table-cell>
                 </fo:table-row>
+                <fo:table-row border-top="0px" padding-left="2pt" margin-left="2pt">
+                    <fo:table-cell>
+                        <!-- We insert zero width spaces before dashes so text-wrap works,
+                        this is a kludge due to a bug where text-wrap doesn't work, see here:
+                        http://xmlgraphics.apache.org/fop/faq.html#cells-overflow -->
+                        <fo:block>
+                            <xsl:text> </xsl:text>
+                        </fo:block>
+                    </fo:table-cell>                    
+                    <fo:table-cell number-columns-spanned="4">
+                        <fo:block><xsl:apply-templates select="ead:did" mode="dsc2"/></fo:block>
+                    </fo:table-cell>
+                </fo:table-row>                
             </xsl:otherwise>
         </xsl:choose>
         <!-- Calls child components -->
@@ -1647,14 +1661,18 @@
             </xsl:if>
             - <xsl:apply-templates select="ead:unittitle"/>
         </fo:block>
-        <fo:block margin-bottom="0pt" margin-top="0" font-size="12">
+    </xsl:template>
+
+    <xsl:template match="ead:did" mode="dsc2">
+        <fo:block margin-bottom="0pt" margin-top="0" font-size="14">
             <xsl:apply-templates select="ead:origination" mode="dsc"/>
             <xsl:apply-templates select="ead:materialspec" mode="dsc"/>
             <xsl:apply-templates select="ead:abstract" mode="dsc"/>
             <xsl:apply-templates select="ead:note" mode="dsc"/>
+            <xsl:apply-templates select="../ead:scopecontent" mode="dsc"/>
         </fo:block>
     </xsl:template>
-
+    
     <!-- Formats unitdates -->
     <xsl:template match="ead:unitdate[@type = 'bulk']" mode="did">
         (<xsl:apply-templates/>)
