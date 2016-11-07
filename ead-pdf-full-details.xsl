@@ -656,7 +656,6 @@
                     <xsl:apply-templates select="ead:langmaterial/ead:language" mode="overview"/>
                     <xsl:apply-templates select="ead:materialspec" mode="overview"/>
                     <xsl:apply-templates select="ead:physdesc" mode="overview"/>
-                    <xsl:apply-templates select="ead:physloc" mode="overview"/>
                     <xsl:apply-templates select="ead:note" mode="overview"/>
                 </fo:table-body>
             </fo:table>
@@ -1462,7 +1461,6 @@
             <xsl:apply-templates select="ead:unitdate" mode="dsc"/>
             <xsl:apply-templates select="following-sibling::ead:scopecontent[1]" mode="dsc"/>
             <xsl:apply-templates select="ead:physdesc" mode="dsc"/>
-            <xsl:apply-templates select="ead:physloc" mode="dsc"/>
             <xsl:apply-templates select="ead:langmaterial" mode="dsc"/>
             <xsl:apply-templates select="ead:materialspec" mode="dsc"/>
             <xsl:apply-templates select="ead:abstract" mode="dsc"/>
@@ -1499,7 +1497,6 @@
         </fo:block>
         <fo:block margin-bottom="0pt" margin-top="0" font-size="12">
             <xsl:apply-templates select="ead:origination" mode="dsc"/>
-            <xsl:apply-templates select="ead:physloc" mode="dsc"/>
             <xsl:apply-templates select="ead:langmaterial" mode="dsc"/>
             <xsl:apply-templates select="ead:materialspec" mode="dsc"/>
             <xsl:apply-templates select="ead:abstract" mode="dsc"/>
