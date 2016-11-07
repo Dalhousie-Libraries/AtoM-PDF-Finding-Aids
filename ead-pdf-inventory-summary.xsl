@@ -1527,7 +1527,7 @@
         <fo:table-row background-color="#f7f7f9" padding-left="2pt" margin-left="2pt">
             <fo:table-cell number-columns-spanned="1">
                 <fo:block>
-                    Ref code
+                    Reference code
                 </fo:block>
             </fo:table-cell>
             <fo:table-cell number-columns-spanned="1">
@@ -1542,12 +1542,12 @@
             </fo:table-cell>
             <fo:table-cell number-columns-spanned="1">
                 <fo:block>
-                    Physical Description
+                    Physical description
                 </fo:block>
             </fo:table-cell>
             <fo:table-cell number-columns-spanned="1">
                 <fo:block>
-                    Scope &amp; Content Note
+                    Scope &amp; content
                 </fo:block>
             </fo:table-cell>
         </fo:table-row>
