@@ -886,6 +886,7 @@
             </fo:block>
         </xsl:if>
     </xsl:template>
+    
     <xsl:template match="ead:controlaccess/child::*">
         <fo:list-item>
             <fo:list-item-label end-indent="label-end()">
@@ -1461,7 +1462,6 @@
             <xsl:apply-templates select="ead:unitdate" mode="dsc"/>
             <xsl:apply-templates select="following-sibling::ead:scopecontent[1]" mode="dsc"/>
             <xsl:apply-templates select="ead:physdesc" mode="dsc"/>
-            <xsl:apply-templates select="ead:langmaterial" mode="dsc"/>
             <xsl:apply-templates select="ead:materialspec" mode="dsc"/>
             <xsl:apply-templates select="ead:abstract" mode="dsc"/>
             <xsl:apply-templates select="ead:note" mode="dsc"/>
