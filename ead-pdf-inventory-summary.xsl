@@ -1665,11 +1665,11 @@
 
     <xsl:template match="ead:did" mode="dsc2">
         <fo:block margin-bottom="0pt" margin-top="0" font-size="14">
-            <xsl:apply-templates select="ead:origination" mode="dsc"/>
-            <xsl:apply-templates select="ead:materialspec" mode="dsc"/>
-            <xsl:apply-templates select="ead:abstract" mode="dsc"/>
-            <xsl:apply-templates select="ead:note" mode="dsc"/>
-            <xsl:apply-templates select="../ead:scopecontent" mode="dsc"/>
+            <xsl:apply-templates select="ead:origination" mode="dsc2"/>
+            <xsl:apply-templates select="ead:materialspec" mode="dsc2"/>
+            <xsl:apply-templates select="ead:abstract" mode="dsc2"/>
+            <xsl:apply-templates select="ead:note" mode="dsc2"/>
+            <xsl:apply-templates select="../ead:scopecontent" mode="dsc2"/>
         </fo:block>
     </xsl:template>
     
@@ -1727,6 +1727,42 @@
             <xsl:if test="name()='unitdate'"> (date of creation)</xsl:if>
         </fo:block>
     </xsl:template>
+    
+    <!-- Special formatting for elements in the collection inventory list -->
+    <xsl:template match="ead:repository | ead:origination | ead:unitdate | ead:unitid | ead:scopecontent
+        | ead:physdesc | ead:physloc | ead:materialspec | ead:container
+        | ead:abstract | ead:note | ead:phystech | ead:acqinfo | ead:arrangement | ead:originalsloc
+        | ead:altformavail | ead:accessrestrict | ead:userestrict | ead:otherfindaid | ead:relatedmaterial
+        | ead:accruals | ead:odd" mode="dsc2">
+        
+        <fo:block xsl:use-attribute-sets="smpDsc"  font-size="18">
+            <fo:inline text-decoration="underline">
+                <xsl:choose>
+                    <!-- Test for label attribute used by origination element -->
+                    <xsl:when test="@label">
+                        <xsl:value-of select="concat(upper-case(substring(@label,1,1)),substring(@label,2))"></xsl:value-of>
+                        <xsl:if test="@type"> [<xsl:value-of select="@type"/>]</xsl:if>
+                        <xsl:if test="self::ead:origination">
+                            <xsl:choose>
+                                <xsl:when test="ead:persname[@role != ''] and contains(ead:persname/@role,' (')">
+                                    - <xsl:value-of select="substring-before(ead:persname/@role,' (')"/>
+                                </xsl:when>
+                                <xsl:when test="ead:persname[@role != '']">
+                                    - <xsl:value-of select="ead:persname/@role"/>
+                                </xsl:when>
+                                <xsl:otherwise/>
+                            </xsl:choose>
+                        </xsl:if>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="local:tagName(.)"/>
+                    </xsl:otherwise>
+                </xsl:choose></fo:inline>: <xsl:apply-templates/>
+            <xsl:if test="@datechar"> (<xsl:value-of select="@datechar"/>)</xsl:if>
+            <xsl:if test="name()='unitdate'"> (date of creation)</xsl:if>
+        </fo:block>
+    </xsl:template>
+    
     <!--
     <xsl:template match="ead:relatedmaterial | ead:separatedmaterial | ead:accessrestrict | ead:userestrict |
         ead:custodhist | ead:accruals | ead:altformavail | ead:acqinfo |
