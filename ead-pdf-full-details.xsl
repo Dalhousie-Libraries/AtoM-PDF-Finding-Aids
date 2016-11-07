@@ -1481,7 +1481,6 @@
             <xsl:apply-templates select="following-sibling::ead:relatedmaterial" mode="dsc"/>
             <xsl:apply-templates select="following-sibling::ead:accruals" mode="dsc"/>
             <xsl:call-template name="otherNotesSeries"/>
-            <xsl:apply-templates select="following-sibling::ead:controlaccess" mode="dsc"/>
         </fo:block>
     </xsl:template>
 
