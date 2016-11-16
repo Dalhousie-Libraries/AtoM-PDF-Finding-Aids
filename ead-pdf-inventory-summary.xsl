@@ -220,7 +220,7 @@
     </xsl:template>
 
     <xsl:template name="collectionUrl">
-        <xsl:value-of select="//ead:eadid/@url"/>
+        <xsl:value-of select="replace(//ead:eadid/@url,'/index.php/','')"/>
     </xsl:template>
 
     <!-- Display Title Notes fields in RAD notes header -->
@@ -318,7 +318,7 @@
             -->
 
             <xsl:apply-templates select="ead:address"/>
-            <xsl:value-of select="//ead:eadid/@url"/>
+            <xsl:value-of select="replace(//ead:eadid/@url,'/index.php/','')"/>
         </fo:block>
     </xsl:template>
 
