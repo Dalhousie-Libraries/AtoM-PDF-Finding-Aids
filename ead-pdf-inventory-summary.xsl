@@ -647,7 +647,7 @@
                     <xsl:apply-templates select="ead:otherfindaid"/>
                     <xsl:apply-templates select="ead:relatedmaterial"/>
                     <xsl:apply-templates select="ead:accruals"/>
-                <!--    <xsl:call-template name="otherNotes"/> -->
+                    <xsl:call-template name="otherNotes"/>
 
                     <xsl:call-template name="toc"/>
                 </fo:block>
