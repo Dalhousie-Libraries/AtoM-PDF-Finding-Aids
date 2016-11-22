@@ -225,7 +225,9 @@
     </xsl:template>
 
     <xsl:template name="collectionUrl">
-        <xsl:value-of select="replace(//ead:eadid/@url,'/index.php/','')"/>
+        <xsl:value-of select="//ead:eadid/@url"/>
+        <!-- Uncomment and comment above value-of if you want to remove /index.php/ from URL on coverpage     
+        <xsl:value-of select="replace(//ead:eadid/@url,'/index.php/','')"/>-->
     </xsl:template>
 
     <!-- Display Title Notes fields in RAD notes header -->
@@ -324,7 +326,9 @@
 
             <xsl:apply-templates select="ead:address"/>
             
-            <xsl:value-of select="replace(//ead:eadid/@url,'/index.php/','')"/>
+            <xsl:value-of select="//ead:eadid/@url"/>
+            <!-- Uncomment and comment above value-of if you want to remove /index.php/ from URL on coverpage     
+        <xsl:value-of select="replace(//ead:eadid/@url,'/index.php/','')"/>-->
         </fo:block>
     </xsl:template>
 
