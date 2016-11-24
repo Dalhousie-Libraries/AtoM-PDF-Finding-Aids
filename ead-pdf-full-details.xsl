@@ -1421,7 +1421,7 @@
 
     <!-- Series titles -->
     <xsl:template match="ead:did" mode="dscSeriesTitle">
-        <fo:block font-weight="bold" font-size="22" margin-bottom="5pt" margin-top="20pt" id="{local:buildID(parent::*)}">
+        <fo:block font-weight="bold" font-size="14" margin-bottom="5pt" margin-top="20pt" id="{local:buildID(parent::*)}">
             <xsl:choose>
                 <xsl:when test="../@level='series'">Series: </xsl:when>
                 <xsl:when test="../@level='subseries'">Subseries: </xsl:when>
