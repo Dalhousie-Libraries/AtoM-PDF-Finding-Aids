@@ -1586,6 +1586,7 @@
         <fo:block margin-left="2pt" margin-bottom="4pt" margin-top="0" font-size="9">
             <!--Atom: <xsl:apply-templates select="ead:repository" mode="dsc"/> -->
             <xsl:apply-templates select="ead:origination" mode="dsc"/>
+            <xsl:apply-templates select="ead:physloc" mode="dsc"/>
             <xsl:apply-templates select="ead:unitdate" mode="dsc"/>
             <xsl:apply-templates select="following-sibling::ead:scopecontent[1]" mode="dsc"/>
             <xsl:apply-templates select="ead:physdesc" mode="dsc"/>
@@ -1629,6 +1630,7 @@
     <xsl:template match="ead:did" mode="dsc2">
         <fo:block margin-bottom="0pt" margin-top="0" font-size="14">
             <xsl:apply-templates select="ead:origination" mode="dsc2"/>
+            <xsl:apply-templates select="ead:physloc" mode="dsc2"/>
             <xsl:apply-templates select="ead:materialspec" mode="dsc2"/>
             <xsl:apply-templates select="ead:abstract" mode="dsc2"/>
             <xsl:apply-templates select="ead:note" mode="dsc2"/>
