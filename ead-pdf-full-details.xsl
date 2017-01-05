@@ -429,7 +429,7 @@
             <xsl:for-each select="ead:dsc">
                 <xsl:if test="child::*">
                     <fo:bookmark internal-destination="{local:buildID(.)}">
-                        <fo:bookmark-title>Series descriptions</fo:bookmark-title>
+                        <fo:bookmark-title>Collection holdings</fo:bookmark-title>
                     </fo:bookmark>
                 </xsl:if>
                 <!--Creates descendants bookmarks-->
@@ -556,7 +556,7 @@
                 <xsl:for-each select="ead:dsc">
                     <xsl:if test="child::*">
                         <fo:block text-align-last="justify">
-                            <fo:basic-link internal-destination="{local:buildID(.)}">Series descriptions</fo:basic-link>
+                            <fo:basic-link internal-destination="{local:buildID(.)}">Collection holdings</fo:basic-link>
                             <xsl:text>&#160;&#160;</xsl:text>
                             <fo:leader leader-pattern="dots"/>
                             <xsl:text>&#160;&#160;</xsl:text>
@@ -661,6 +661,7 @@
                     <xsl:apply-templates select="ead:langmaterial/ead:language" mode="overview"/>
                     <xsl:apply-templates select="ead:materialspec" mode="overview"/>
                     <xsl:apply-templates select="ead:physdesc" mode="overview"/>
+                    <xsl:apply-templates select="ead:physloc" mode="overview"/>
                     <xsl:apply-templates select="ead:note" mode="overview"/>
                 </fo:table-body>
             </fo:table>
@@ -1352,7 +1353,7 @@
     <!-- Collection Inventory (dsc) templates -->
     <xsl:template match="ead:archdesc/ead:dsc">
         <fo:block xsl:use-attribute-sets="sectionTable" margin-top="10pt">
-            <fo:block xsl:use-attribute-sets="h2ID">Series descriptions</fo:block>
+            <fo:block xsl:use-attribute-sets="h2ID">Collection holdings</fo:block>
             <xsl:apply-templates select="*[not(self::ead:head)]"/>
         </fo:block>
     </xsl:template>
@@ -1425,7 +1426,7 @@
 
     <!-- Series titles -->
     <xsl:template match="ead:did" mode="dscSeriesTitle">
-        <fo:block font-weight="bold" font-size="22" margin-bottom="5pt" margin-top="20pt" id="{local:buildID(parent::*)}">
+        <fo:block font-weight="bold" font-size="14" margin-bottom="5pt" margin-top="20pt" id="{local:buildID(parent::*)}">
             <xsl:choose>
                 <xsl:when test="../@level='series'">Series: </xsl:when>
                 <xsl:when test="../@level='subseries'">Subseries: </xsl:when>
@@ -1467,6 +1468,7 @@
             <xsl:apply-templates select="ead:unitdate" mode="dsc"/>
             <xsl:apply-templates select="following-sibling::ead:scopecontent[1]" mode="dsc"/>
             <xsl:apply-templates select="ead:physdesc" mode="dsc"/>
+            <xsl:apply-templates select="ead:physloc" mode="dsc"/>
             <xsl:apply-templates select="ead:materialspec" mode="dsc"/>
             <xsl:apply-templates select="ead:abstract" mode="dsc"/>
             <xsl:apply-templates select="ead:note" mode="dsc"/>
@@ -1501,6 +1503,7 @@
         </fo:block>
         <fo:block margin-bottom="0pt" margin-top="0" font-size="12">
             <xsl:apply-templates select="ead:origination" mode="dsc"/>
+            <xsl:apply-templates select="ead:physloc" mode="dsc"/>
             <xsl:apply-templates select="ead:langmaterial" mode="dsc"/>
             <xsl:apply-templates select="ead:materialspec" mode="dsc"/>
             <xsl:apply-templates select="ead:abstract" mode="dsc"/>
